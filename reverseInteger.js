@@ -9,7 +9,7 @@ function reverse (x) {
     const isNegative = x < 0;
 
     const absoluteValue = Math.abs(x);
-    const len = parseInt(Math.log10(x))+1;
+    const len = parseInt(Math.log10(absoluteValue))+1;
 
 
     let final = 0;
@@ -20,9 +20,12 @@ function reverse (x) {
         let multi = 10**(len-1-i);
         final = final + digit*multi;
         rem = rem%10**i;
-
+ 
     }
-console.log(final);
+    if(final < -2147483647 || final > 2147483647 || final === 0) {
+        return 0;
+    }
+    return isNegative ? -final : final;
 }
 
-reverse(123);
+console.log(reverse(-123));
